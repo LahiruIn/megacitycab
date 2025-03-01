@@ -88,4 +88,18 @@ public class driverService {
 		    }
 		}
 		
+		
+		public void updatedriver(driver driver) {
+			try {
+				
+				String query = "update driver SET d_name = '"+driver.getD_name()+"', d_nic='"+driver.getD_nic()+"', d_phone='"+driver.getD_phone()+"' , d_email= '"+driver.getD_email()+"', d_password='"+driver.getD_password()+"' where d_email='"+driver.getD_email()+"' ";
+				
+				Statement statement = DBConnect.getConnection().createStatement();
+				statement.executeUpdate(query);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+		
+	}

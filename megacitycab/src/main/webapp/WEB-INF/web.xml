@@ -86,4 +86,15 @@
 <url-pattern>/ddriver</url-pattern>
 </servlet-mapping>
 
+
+<servlet>
+<servlet-name>updateDriver</servlet-name>
+<servlet-class>servlet.updateDriver</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>updateDriver</servlet-name>
+<url-pattern>/upddriver</url-pattern>
+</servlet-mapping>
+
 </web-app>

@@ -64,7 +64,14 @@
                             <td>${drv.d_password}</td>
                             <td>
 
-                                <button class="edit-btn"><i class="fas fa-edit"></i>  Edit  </button>
+                                <form action="updatedrivers.jsp" method="post">
+                                <input type="hidden" name="dname" value="${drv.d_name}">
+                                <input type="hidden" name="dnic" value="${drv.d_nic}">
+                                <input type="hidden" name="dphone" value="${drv.d_phone}">
+                                <input type="hidden" name="demail" value="${drv.d_email}">
+                                <input type="hidden" name="dpassword" value="${drv.d_password}">
+                                <button class="edit-btn"><i class="fas fa-edit"></i>  Update  </button>
+                                </form>
                             	<form action="deleteDrivers" method="post">
 							    <input type="hidden" name="demail" value="${drv.d_email}">
 							    <button type="submit" class="delete-btn"><i class="fas fa-trash"></i> Delete</button>
