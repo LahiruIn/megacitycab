@@ -59,7 +59,7 @@ body {
 .sidebar ul li .active {
     background: #1a252f;
     padding-left: 10px;
-    border-left: 4px solid #ffff00;
+    border-left: 4px solid #ffc107;
 }
 
 /* Main Content */

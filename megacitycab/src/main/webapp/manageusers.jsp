@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Users</title>
-    <link rel="stylesheet" href="CSS/manage_users.css">
+    <link rel="stylesheet" href="CSS/manageusers.css">
     <script defer src="JS/manage_users.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
@@ -18,8 +18,8 @@
         <ul>
             <li><a href="adminhome.jsp"><i class="fas fa-chart-line"></i> Dashboard</a></li>
             <li><a href="manageusers.jsp" class="active"><i class="fas fa-users"></i> Manage Users</a></li>
-            <li><a href="managedrivers.jsp"><i class="fas fa-users"></i> Manage Drivers</a></li>
-            <li><a href="#"><i class="fas fa-box-open"></i> Products</a></li>
+            <li><a href="managedrivers.jsp"><i class="fa-solid fa-user-plus"></i> Manage Drivers</a></li>
+            <li><a href="managevehicals.jsp"><i class="fa-solid fa-car"></i> Manage Vehicals</a></li>
             <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
             <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>

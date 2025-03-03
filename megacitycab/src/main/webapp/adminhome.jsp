@@ -17,8 +17,8 @@
         <ul>
             <li><a href="adminhome.jsp" class="active"><i class="fas fa-chart-line"></i> Dashboard</a></li>
             <li><a href="manageusers.jsp"><i class="fas fa-users"></i>Manage Users</a></li>
-            <li><a href="managedrivers.jsp"><i class="fas fa-users"></i>Manage Drivers</a></li>
-            <li><a href="#"><i class="fas fa-box-open"></i> Products</a></li>
+            <li><a href="managedrivers.jsp"><i class="fa-solid fa-user-plus"></i>Manage Drivers</a></li>
+            <li><a href="managevehicals.jsp"><i class="fa-solid fa-car"></i> Manage Vehicals</a></li>
             <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
             <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>

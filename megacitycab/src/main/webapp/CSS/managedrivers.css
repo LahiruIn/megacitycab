@@ -1,0 +1,299 @@
+@charset "UTF-8";
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    background-color: #f5f6fa;
+    color: #2c3e50;
+    height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: #2c3e50;
+    color: white;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: 0.3s;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.sidebar .logo {
+    font-size: 22px;
+    font-weight: 600;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.sidebar .logo i {
+    font-size: 26px;
+    color: rgb(255, 255, 255);
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+.sidebar ul li {
+    padding: 15px;
+    text-align: left;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li .active {
+    background: #1a252f;
+    padding-left: 10px;
+    border-left: 4px solid #ffc107;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    flex: 1;
+    transition: 0.3s;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 15px 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+}
+
+header button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* User Management Container */
+.user-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* Header Row */
+.header-row {
+    display: flex;
+    justify-content: space-between; /* Space between title and button */
+    align-items: center;
+    margin-bottom: 20px; /* Add space below the header */
+}
+
+/* Add Driver Button (Yellow) */
+.add-user-btn {
+    background: #ffc107; /* Yellow Color */
+    color: #2c3e50;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-user-btn i {
+    font-size: 18px;
+}
+
+.add-user-btn:hover {
+    background: #e0a800; /* Darker Yellow on Hover */
+    transform: scale(1.05);
+}
+
+/* Button Container to Align Update and Delete Buttons in One Line */
+.button-container {
+    display: flex;
+    gap: 10px; /* Adjust the spacing between buttons */
+    align-items: center;
+}
+
+/* Update Button (Green) */
+.edit-btn {
+    background: #28a745; /* Green Color */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-flex; /* Ensures the buttons are in-line with flex */
+    transition: 0.3s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    align-items: center; /* Centers the icon and text */
+}
+
+.edit-btn i {
+    font-size: 16px;
+}
+
+.edit-btn:hover {
+    background: #218838; /* Darker Green on Hover */
+    transform: scale(1.05);
+}
+
+.edit-btn:active {
+    background: #1e7e34; /* Even darker Green on Active */
+}
+
+/* Delete Button */
+.delete-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-flex; /* Ensures the buttons are in-line with flex */
+    transition: 0.3s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    align-items: center; /* Centers the icon and text */
+}
+
+.delete-btn i {
+    font-size: 16px;
+}
+
+.delete-btn:hover {
+    background: #c0392b;
+    transform: scale(1.1);
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 16px;
+}
+
+table thead {
+    background: #2c3e50;
+    color: white;
+}
+
+table thead tr th {
+    padding: 12px;
+}
+
+table tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+table tbody tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+table tbody tr td {
+    padding: 12px;
+}
+
+/* Ensure Action Column Gets More Space */
+table .action-column {
+    width: 200px; /* Adjust the width to give more space to action buttons */
+    text-align: center;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 0;
+        overflow: hidden;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    header {
+        font-size: 18px;
+    }
+
+    .add-user-btn,
+    .view-btn,
+    .edit-btn {
+        font-size: 14px;
+    }
+
+    table th, table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    /* Adjusting for mobile view */
+    .user-container {
+        padding: 15px;
+    }
+
+    .sidebar ul li {
+        padding: 10px;
+    }
+
+    .sidebar .logo {
+        font-size: 18px;
+    }
+
+    .sidebar ul li a {
+        font-size: 14px;
+    }
+
+    .delete-btn,
+    .add-user-btn,
+    .view-btn,
+    .edit-btn {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    table thead tr th {
+        padding: 8px;
+    }
+
+    table tbody tr td {
+        padding: 10px;
+    }
+}

@@ -13,20 +13,8 @@
         body, html {
             width: 100%;
             height: 100%;
-            font-family: Arial, sans-serif;
-        }
-        .header {
-            background-color: #0d47a1;
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .header a {
-            color: white;
-            text-decoration: none;
-            margin-right: 15px;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
         }
         .hero {
             width: 100%;
@@ -46,68 +34,102 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
         }
         .content {
             position: relative;
             z-index: 2;
             max-width: 600px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
         }
         .btn {
-            background-color: #ffb300;
-            color: black;
-            padding: 10px 20px;
+            background: linear-gradient(135deg, #ffb300, #ff8f00);
+            color: white;
+            padding: 16px 40px;
             border: none;
             cursor: pointer;
-            font-size: 18px;
-            margin-top: 10px;
+            font-size: 22px;
             text-decoration: none;
-            display: inline-block;
-            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(255, 179, 0, 0.5);
+            min-width: 200px;
+            justify-content: center;
         }
-        .navigation {
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 179, 0, 0.7);
+        }
+        .btn i {
+            font-size: 24px;
+        }
+        .banner {
             position: absolute;
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            display: flex;
-            gap: 20px;
-        }
-        .navigation a {
+            background: linear-gradient(135deg, #ff6f00, #ff8f00);
             color: white;
-            text-decoration: none;
-            font-size: 18px;
-            padding: 10px;
-            transition: color 0.3s;
+            padding: 25px 100px;
+            font-size: 36px;
+            font-weight: bold;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            animation: bounceIn 1.5s ease-out forwards;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
         }
-        .navigation a:hover {
-            color: #ffb300;
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) scale(0.8);
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+            }
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s ease-in-out;
         }
     </style>
+    
 </head>
 <body>
-    <div class="header">
-        <div>CARZ SERVICE</div>
-        <div class="contact-info">
-            <a href="mailto:name@websitename.com">&#9993; name@websitename.com</a>
-            <a href="tel:+123456785522">&#128222; +1 2345 67855 22</a>
-        </div>
-    </div>
     <div class="hero">
         <div class="overlay"></div>
         <div class="content">
-            <h1>WE CARE</h1>
-            <p>About Your Car</p>
-            <a href="register.jsp" class="btn">Register</a>
-            <a href="login.jsp" class="btn">Login</a>
-        </div>
-        <div class="navigation">
-            <a href="#">Home</a>
-            <a href="#">About Us</a>
-            <a href="#">Services</a>
-            <a href="#">Gallery</a>
-            <a href="#">Price</a>
-            <a href="#">Our Team</a>
+            <div class="btn-container">
+                <a href="register.jsp" class="btn"><i class="fas fa-user-plus"></i> Customer</a>
+                <a href="login.jsp" class="btn"><i class="fas fa-sign-in-alt"></i> Driver</a>
+            </div>
         </div>
     </div>
 </body>
