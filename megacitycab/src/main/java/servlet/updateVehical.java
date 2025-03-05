@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.io.InputStream;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -16,7 +15,7 @@ import model.vehical;
 import services.vehicalService;
 
 @WebServlet("/updateVehical")
-@MultipartConfig // Required for handling file uploads
+@MultipartConfig
 public class updateVehical extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -26,12 +25,21 @@ public class updateVehical extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         vehical veh = new vehical();
-        vehicalService vehService = new vehicalService(); // Moved instantiation here
+        vehicalService vehService = new vehicalService();
 
         veh.setV_number(request.getParameter("vnumber"));
         veh.setV_type(request.getParameter("vtype"));
         veh.setV_model(request.getParameter("vmodel"));
         veh.setV_seat(request.getParameter("vseat"));
+        veh.setV_price(request.getParameter("vprice"));
+
+        // Handle driver selection
+        String driverIdParam = request.getParameter("d_id");
+        if (driverIdParam != null && !driverIdParam.isEmpty() && !driverIdParam.equals("-1")) {
+            veh.setD_id(Integer.parseInt(driverIdParam)); // Set new driver if selected
+        } else {
+            veh.setD_id(-1); // Keep current driver
+        }
 
         // Handle image upload
         Part filePart = request.getPart("vimage");
@@ -41,8 +49,10 @@ public class updateVehical extends HttpServlet {
             try (InputStream inputStream = filePart.getInputStream()) {
                 carImage = inputStream.readAllBytes();
             }
-        } 
-        
+        } else {
+            carImage = vehService.getVehicleImage(veh.getV_number()); // Keep existing image
+        }
+
         veh.setV_image(carImage);
 
         // Call vehicle service to update
@@ -57,3 +67,4 @@ public class updateVehical extends HttpServlet {
         }
     }
 }
+

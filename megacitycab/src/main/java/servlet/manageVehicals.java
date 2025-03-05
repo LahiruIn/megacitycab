@@ -34,6 +34,9 @@ public class manageVehicals extends HttpServlet {
 		
 		vehicalService vehService = new vehicalService();
         ArrayList<vehical> vehList = vehService.getAllVehical(); // Fetch all vehicles
+        
+        System.out.println("Total Vehicles Retrieved: " + vehList.size()); // DEBUGGING
+
 
         // Store the list in request scope
         request.setAttribute("vehList", vehList);

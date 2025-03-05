@@ -7,7 +7,9 @@ public class driver {
 	String d_nic;
 	int d_phone;
 	String d_email;
+	String d_status;
 	String d_password;
+	
 	
 	
 	public int getD_id() {
@@ -39,6 +41,12 @@ public class driver {
 	}
 	public void setD_email(String d_email) {
 		this.d_email = d_email;
+	}
+	public String getD_status() {
+		return d_status;
+	}
+	public void setD_status(String d_status) {
+		this.d_status = d_status;
 	}
 	public String getD_password() {
 		return d_password;
