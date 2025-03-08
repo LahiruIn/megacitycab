@@ -93,6 +93,7 @@
 										    <button type="submit" class="delete-btn"><i class="fas fa-trash"></i> Delete</button>
 										</form>
 
+
 				                    </td>
 				                </tr>
 				            </c:forEach>

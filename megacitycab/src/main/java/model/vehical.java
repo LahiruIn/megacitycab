@@ -11,6 +11,7 @@ public class vehical {
 	String v_price;
 	int d_id;
 	String d_name;
+	int d_phone;
 	
 	
 	
@@ -69,6 +70,12 @@ public class vehical {
 	}
 	public void setD_name(String d_name) {
 		this.d_name = d_name;
+	}
+	public int getD_phone() {
+		return d_phone;
+	}
+	public void setD_phone(int d_phone) {
+		this.d_phone = d_phone;
 	}
 	
 }

@@ -157,4 +157,15 @@
 <url-pattern>/updveh</url-pattern>
 </servlet-mapping>
 
+
+<servlet>
+<servlet-name>customerDisplayvehical</servlet-name>
+<servlet-class>servlet.customerDisplayvehical</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>customerDisplayvehical</servlet-name>
+<url-pattern>/cusdisplv</url-pattern>
+</servlet-mapping>
+
 </web-app>

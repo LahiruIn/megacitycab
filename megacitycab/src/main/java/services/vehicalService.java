@@ -98,61 +98,53 @@ public class vehicalService {
 
     // ✅ Delete a vehicle and reset driver status only if they are not assigned to another vehicle
     public boolean deleteVehical(String vNumber) {
-        String checkVehicleQuery = "SELECT COUNT(*) FROM vehical WHERE v_number = ?";
-        String checkOtherVehiclesQuery = "SELECT COUNT(*) FROM vehical WHERE d_id = (SELECT d_id FROM vehical WHERE v_number = ?) AND v_number <> ?";
-        String resetDriverQuery = "UPDATE driver SET d_status = 'Not Assigned' WHERE d_id = (SELECT d_id FROM vehical WHERE v_number = ?) AND NOT EXISTS (" + checkOtherVehiclesQuery + ")";
-        String deleteQuery = "DELETE FROM vehical WHERE v_number = ?";
+        String getDriverIdQuery = "SELECT d_id FROM vehical WHERE v_number = ?";
+        String resetDriverQuery = "UPDATE driver SET d_status = 'Not Assigned' WHERE d_id = ?";
+        String deleteVehicleQuery = "DELETE FROM vehical WHERE v_number = ?";
 
         try (Connection conn = DBConnect.getConnection()) {
-            conn.setAutoCommit(false);
+            conn.setAutoCommit(false); // Start transaction
 
-            try (PreparedStatement checkVehicleStmt = conn.prepareStatement(checkVehicleQuery);
-                 PreparedStatement checkOtherVehiclesStmt = conn.prepareStatement(checkOtherVehiclesQuery);
-                 PreparedStatement resetDriverStmt = conn.prepareStatement(resetDriverQuery);
-                 PreparedStatement deleteStmt = conn.prepareStatement(deleteQuery)) {
+            int driverId = -1;
 
-                // Step 1: Check if vehicle exists
-                checkVehicleStmt.setString(1, vNumber);
-                ResultSet rsVehicle = checkVehicleStmt.executeQuery();
-                rsVehicle.next();
-                if (rsVehicle.getInt(1) == 0) {
-                    System.out.println("🚨 Vehicle not found in database: " + vNumber);
-                    return false;
+            // Step 1: Get Driver ID Assigned to the Vehicle
+            try (PreparedStatement getDriverStmt = conn.prepareStatement(getDriverIdQuery)) {
+                getDriverStmt.setString(1, vNumber);
+                ResultSet rs = getDriverStmt.executeQuery();
+                if (rs.next()) {
+                    driverId = rs.getInt("d_id");
                 }
+            }
 
-                // Step 2: Check if the driver has other assigned vehicles
-                checkOtherVehiclesStmt.setString(1, vNumber);
-                checkOtherVehiclesStmt.setString(2, vNumber);
-                ResultSet rs = checkOtherVehiclesStmt.executeQuery();
-                rs.next();
-                int vehicleCount = rs.getInt(1);
-
-                // Step 3: Reset driver status only if no other vehicles are assigned
-                if (vehicleCount == 0) {
-                    resetDriverStmt.setString(1, vNumber);
+            if (driverId != -1) {
+                // Step 2: Reset the Driver Status
+                try (PreparedStatement resetDriverStmt = conn.prepareStatement(resetDriverQuery)) {
+                    resetDriverStmt.setInt(1, driverId);
                     resetDriverStmt.executeUpdate();
                 }
+            }
 
-                // Step 4: Delete the vehicle
+            // Step 3: Delete the Vehicle
+            try (PreparedStatement deleteStmt = conn.prepareStatement(deleteVehicleQuery)) {
                 deleteStmt.setString(1, vNumber);
-                int rowsAffected = deleteStmt.executeUpdate();
-
-                if (rowsAffected > 0) {
-                    conn.commit();
-                    System.out.println("✅ Vehicle deleted successfully: " + vNumber);
-                    return true;
-                } else {
+                int rowsDeleted = deleteStmt.executeUpdate();
+                if (rowsDeleted == 0) {
                     conn.rollback();
-                    System.out.println("❌ Vehicle deletion failed for: " + vNumber);
+                    System.out.println("❌ Error: Vehicle not found for deletion: " + vNumber);
                     return false;
                 }
             }
+
+            conn.commit(); // Commit transaction
+            System.out.println("✅ Vehicle deleted successfully: " + vNumber);
+            return true;
 
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
+
 
 
     
@@ -257,6 +249,46 @@ public class vehicalService {
 
         return imageBytes; // Returns the existing image (or null if not found)
     }
+    
+    
+    
+    public ArrayList<vehical> displayAllVehical() {
+        ArrayList<vehical> listVeh = new ArrayList<>();
+        String query = "SELECT v.v_id, v.v_number, v.v_type, v.v_model, v.v_seat, v.v_image, " +
+                       "COALESCE(v.v_price, '0') AS v_price, " +
+                       "COALESCE(d.d_name, 'No Driver Assigned') AS d_name, " +
+                       "COALESCE(d.d_phone, 0) AS d_phone " +  
+                       "FROM vehical v " +
+                       "LEFT JOIN driver d ON v.d_id = d.d_id";
+
+        try (Connection conn = DBConnect.getConnection();
+             PreparedStatement statement = conn.prepareStatement(query);
+             ResultSet rs = statement.executeQuery()) {
+
+            while (rs.next()) {
+                vehical veh = new vehical();
+                veh.setV_id(rs.getInt("v_id"));
+                veh.setV_number(rs.getString("v_number"));
+                veh.setV_type(rs.getString("v_type"));
+                veh.setV_model(rs.getString("v_model"));
+                veh.setV_seat(rs.getString("v_seat"));
+                veh.setV_image(rs.getBytes("v_image"));
+                veh.setV_price(rs.getString("v_price"));
+                veh.setD_name(rs.getString("d_name"));
+                veh.setD_phone(rs.getInt("d_phone"));  // ✅ Ensure d_phone is int
+
+                listVeh.add(veh);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("✅ Vehicles Retrieved from DB: " + listVeh.size());
+        return listVeh;
+    }
+
+
+
 
     
 }
