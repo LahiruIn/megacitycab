@@ -43,7 +43,7 @@ public class addCustomer extends HttpServlet {
 		customerService service = new customerService();
 		service.regCustomer(cus);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 		
 		doGet(request, response);
 		

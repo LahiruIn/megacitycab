@@ -3,7 +3,7 @@ package model;
 import java.sql.Timestamp;
 
 public class booking {
-    private int booking_id;
+    private int b_id;
     private int c_id;
     private String c_name;
     private String c_email;
@@ -12,12 +12,13 @@ public class booking {
     private String pickup_location;
     private String drop_location;
     private Timestamp pickup_date;
+    private String booking_status; // ✅ Add this field
 
     public booking() {}
 
-    public booking(int booking_id, int c_id, String c_name, String c_email, int c_phone, 
-                   String v_number, String pickup_location, String drop_location, Timestamp pickup_date) {
-        this.booking_id = booking_id;
+    public booking(int b_id, int c_id, String c_name, String c_email, int c_phone, 
+                   String v_number, String pickup_location, String drop_location, Timestamp pickup_date, String booking_status) {
+        this.b_id = b_id;
         this.c_id = c_id;
         this.c_name = c_name;
         this.c_email = c_email;
@@ -26,15 +27,16 @@ public class booking {
         this.pickup_location = pickup_location;
         this.drop_location = drop_location;
         this.pickup_date = pickup_date;
+        this.booking_status = booking_status;
     }
 
     // ✅ Getters and Setters
-    public int getBooking_id() {
-        return booking_id;
+    public int getB_id() {
+        return b_id;
     }
 
-    public void setBooking_id(int booking_id) {
-        this.booking_id = booking_id;
+    public void setB_id(int b_id) {
+        this.b_id = b_id;
     }
 
     public int getC_id() {
@@ -99,5 +101,13 @@ public class booking {
 
     public void setPickup_date(Timestamp pickup_date) {
         this.pickup_date = pickup_date;
+    }
+
+    public String getBooking_status() {  // ✅ Add this getter
+        return booking_status;
+    }
+
+    public void setBooking_status(String booking_status) {  // ✅ Add this setter
+        this.booking_status = booking_status;
     }
 }

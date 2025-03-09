@@ -20,8 +20,8 @@
             <li><a href="manageusers.jsp" class="active"><i class="fas fa-users"></i> Manage Users</a></li>
             <li><a href="managedrivers.jsp"><i class="fa-solid fa-user-plus"></i> Manage Drivers</a></li>
             <li><a href="managevehicals.jsp"><i class="fa-solid fa-car"></i> Manage Vehicals</a></li>
-            <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
-            <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            <li><a href="adminviewbooking.jsp" class="active"><i class="fas fa-book"></i> All Bookings</a></li>
+            <li><a href="lo"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </div>
 
@@ -57,26 +57,28 @@
                 </thead>
                 
                 <tbody>
-                    <c:forEach var="cus" items="${customer}">
-                        <tr>
-                            <td>${cus.c_id}</td>
-                            <td>${cus.c_name}</td>
-                            <td>${cus.c_address}</td>
-                            <td>${cus.c_nic}</td>
-                            <td>${cus.c_phone}</td>
-                            <td>${cus.c_email}</td>
-                            <td>${cus.c_password}</td>
-                            <td>
-                                
-                                <form action="deleteUsers" method="post">
-                                <input type="hidden" name="email" value="${cus.c_email }">
-                                <button type="submit" class="delete-btn"><i class="fas fa-trash"></i> Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-
+				    <c:choose>
+				        <c:when test="${not empty customer}">
+				            <c:forEach var="cus" items="${customer}">
+				                <tr>
+				                    <td>${cus.c_id}</td>
+				                    <td>${cus.c_name}</td>
+				                    <td>${cus.c_address}</td>
+				                    <td>${cus.c_nic}</td>
+				                    <td>${cus.c_phone}</td>
+				                    <td>${cus.c_email}</td>
+				                    <td>${cus.c_password}</td>
+				                    <td>
+				                        <form action="deleteUsers" method="post">
+				                            <input type="hidden" name="email" value="${cus.c_email}">
+				                            <button type="submit" class="delete-btn"><i class="fas fa-trash"></i> Delete</button>
+				                        </form>
+				                    </td>
+				                </tr>
+				            </c:forEach>
+				        </c:when>
+				    </c:choose>
+				</tbody>
             </table>
         </div>
     </div>

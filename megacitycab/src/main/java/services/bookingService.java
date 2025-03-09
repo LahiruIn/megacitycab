@@ -27,7 +27,7 @@ public class bookingService {
             stmt.setString(5, newBooking.getV_number());
             stmt.setString(6, newBooking.getPickup_location());
             stmt.setString(7, newBooking.getDrop_location());
-            stmt.setString(8, newBooking.getPickup_date());
+            stmt.setTimestamp(8, newBooking.getPickup_date());  
             stmt.setString(9, "Pending"); // Default status
 
             int rowsInserted = stmt.executeUpdate();
@@ -39,7 +39,7 @@ public class bookingService {
         return success;
     }
 
-    // ✅ Method to Retrieve Bookings for a Customer
+ // Retrieve Bookings for a Customer
     public List<booking> getCustomerBookings(int customerId) {
         List<booking> bookingList = new ArrayList<>();
         String query = "SELECT * FROM bookings WHERE c_id = ? ORDER BY created_at DESC";
@@ -52,7 +52,7 @@ public class bookingService {
 
             while (rs.next()) {
                 booking bk = new booking();
-                bk.setBooking_id(rs.getInt("b_id"));
+                bk.setB_id(rs.getInt("b_id"));  // ✅ Ensure method name is correct
                 bk.setC_id(rs.getInt("c_id"));
                 bk.setC_name(rs.getString("c_name"));
                 bk.setC_email(rs.getString("c_email"));
@@ -60,7 +60,64 @@ public class bookingService {
                 bk.setV_number(rs.getString("v_number"));
                 bk.setPickup_location(rs.getString("pickup_location"));
                 bk.setDrop_location(rs.getString("drop_location"));
-                bk.setPickup_date(rs.getString("pickup_date"));
+                bk.setPickup_date(rs.getTimestamp("pickup_date")); 
+                bk.setBooking_status(rs.getString("booking_status"));
+
+                bookingList.add(bk);
+            }
+
+            // 🔹 Debugging: Check if bookings exist
+            if (bookingList.isEmpty()) {
+                System.out.println("⚠️ No bookings found for customer ID: " + customerId);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bookingList;
+    }
+
+
+    // ✅ Method to Update Booking Status (Admin/Driver)
+    public boolean updateBookingStatus(int bookingId, String newStatus) {
+        boolean updated = false;
+        String query = "UPDATE bookings SET booking_status = ? WHERE b_id = ?";
+
+        try (Connection conn = DBConnect.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, newStatus);
+            stmt.setInt(2, bookingId);
+
+            int rowsUpdated = stmt.executeUpdate();
+            updated = rowsUpdated > 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return updated;
+    }
+
+    // ✅ Method to Retrieve All Bookings (For Admin)
+    public List<booking> getAllBookings() {
+        List<booking> bookingList = new ArrayList<>();
+        String query = "SELECT * FROM bookings ORDER BY created_at DESC";
+
+        try (Connection conn = DBConnect.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                booking bk = new booking();
+                bk.setB_id(rs.getInt("b_id"));
+                bk.setC_id(rs.getInt("c_id"));
+                bk.setC_name(rs.getString("c_name"));
+                bk.setC_email(rs.getString("c_email"));
+                bk.setC_phone(rs.getInt("c_phone"));
+                bk.setV_number(rs.getString("v_number"));
+                bk.setPickup_location(rs.getString("pickup_location"));
+                bk.setDrop_location(rs.getString("drop_location"));
+                bk.setPickup_date(rs.getTimestamp("pickup_date")); // ✅ Using getTimestamp()
                 bk.setBooking_status(rs.getString("booking_status"));
 
                 bookingList.add(bk);

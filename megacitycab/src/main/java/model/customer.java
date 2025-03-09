@@ -54,11 +54,7 @@ public class customer {
     }
 
     public void setC_phone(int c_phone) {
-        if (String.valueOf(c_phone).length() == 10) { // ✅ Ensure phone is 10 digits
             this.c_phone = c_phone;
-        } else {
-            throw new IllegalArgumentException("Phone number must be 10 digits");
-        }
     }
 
     public String getC_address() {
@@ -74,11 +70,7 @@ public class customer {
     }
 
     public void setC_email(String c_email) {
-        if (c_email.contains("@") && c_email.contains(".")) { // ✅ Basic email validation
             this.c_email = c_email;
-        } else {
-            throw new IllegalArgumentException("Invalid email format");
-        }
     }
 
     public String getC_password() {
@@ -86,11 +78,7 @@ public class customer {
     }
 
     public void setC_password(String c_password) {
-        if (c_password.length() >= 6) { // ✅ Ensure password is at least 6 characters
             this.c_password = c_password;
-        } else {
-            throw new IllegalArgumentException("Password must be at least 6 characters");
-        }
     }
 
     // ✅ toString() method for debugging

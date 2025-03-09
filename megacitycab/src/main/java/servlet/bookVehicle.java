@@ -1,17 +1,17 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.Timestamp;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import model.vehical;
-import controller.DBConnect;
+import model.booking;
+import model.customer;
+import services.bookingService;
 
 @WebServlet("/bookVehicle")
 public class bookVehicle extends HttpServlet {
@@ -21,41 +21,58 @@ public class bookVehicle extends HttpServlet {
         super();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String vehicleNumber = request.getParameter("vehicleNumber");
-        vehical veh = null;
+        // ✅ Retrieve Logged-In Customer from Session
+        HttpSession session = request.getSession();
+        customer loggedInCustomer = (customer) session.getAttribute("loggedInCustomer");
 
-        if (vehicleNumber != null) {
-            try (Connection conn = DBConnect.getConnection();
-                 PreparedStatement stmt = conn.prepareStatement(
-                         "SELECT v.v_number, v.v_model, v.v_type, v.v_seat, v.v_price, v.v_image, " +
-                         "d.d_name, d.d_phone " +
-                         "FROM vehical v " +
-                         "LEFT JOIN driver d ON v.d_id = d.d_id " +
-                         "WHERE v.v_number = ?")) {
-                
-                stmt.setString(1, vehicleNumber);
-                ResultSet rs = stmt.executeQuery();
-
-                if (rs.next()) {
-                    veh = new vehical();
-                    veh.setV_number(rs.getString("v_number"));
-                    veh.setV_model(rs.getString("v_model"));
-                    veh.setV_type(rs.getString("v_type"));
-                    veh.setV_seat(rs.getString("v_seat"));
-                    veh.setV_price(rs.getString("v_price"));
-                    veh.setD_name(rs.getString("d_name"));
-                    veh.setD_phone(rs.getInt("d_phone"));
-                    veh.setV_image(rs.getBytes("v_image"));
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        if (loggedInCustomer == null) {
+            // ❌ Redirect to login if user is not authenticated
+            response.sendRedirect("login.jsp");
+            return;
         }
 
-        request.setAttribute("veh", veh);
-        request.getRequestDispatcher("booking_form.jsp").forward(request, response);
+        // ✅ Retrieve Form Data from Request
+        String vehicleNumber = request.getParameter("vehicleNumber");
+        String pickupLocation = request.getParameter("pickupLocation");
+        String dropLocation = request.getParameter("dropLocation");
+        String pickupDateStr = request.getParameter("pickupDate");
+
+        try {
+            // ✅ Convert String to Timestamp
+            Timestamp pickupDate = Timestamp.valueOf(pickupDateStr.replace("T", " ") + ":00");
+
+            // ✅ Create Booking Object
+            booking newBooking = new booking();
+            newBooking.setC_id(loggedInCustomer.getC_id());
+            newBooking.setC_name(loggedInCustomer.getC_name());
+            newBooking.setC_email(loggedInCustomer.getC_email());
+            newBooking.setC_phone(loggedInCustomer.getC_phone());
+            newBooking.setV_number(vehicleNumber);
+            newBooking.setPickup_location(pickupLocation);
+            newBooking.setDrop_location(dropLocation);
+            newBooking.setPickup_date(pickupDate);
+            newBooking.setBooking_status("Pending"); // Default status
+
+            // ✅ Call Service to Save Booking
+            bookingService bookingService = new bookingService();
+            boolean success = bookingService.createBooking(newBooking);
+
+            if (success) {
+                // ✅ Redirect to booking confirmation page
+                response.sendRedirect("viewbooking.jsp");
+            } else {
+                // ❌ Show error message if booking fails
+                request.setAttribute("errorMessage", "Booking failed. Please try again.");
+                request.getRequestDispatcher("booking_form.jsp").forward(request, response);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("errorMessage", "Error processing booking: " + e.getMessage());
+            request.getRequestDispatcher("booking_form.jsp").forward(request, response);
+        }
     }
 }

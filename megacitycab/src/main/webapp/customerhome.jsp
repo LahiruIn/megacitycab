@@ -19,7 +19,7 @@
                     <li><a href="customer_booking.jsp">About</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="logout.jsp">logout</a></li>
                 </ul>
             </nav>
         </div>

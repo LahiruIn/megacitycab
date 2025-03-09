@@ -24,7 +24,7 @@
                     <li><a href="customer_about.jsp">About</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="logout.html">Logout</a></li>
+                    <li><a href="logout.jsp">Logout</a></li>
                 </ul>
             </nav>
         </div>
@@ -50,6 +50,10 @@
        <div class="search-bar">
 		    <input type="text" id="searchInput" placeholder="Search vehicles by model, type, number, or driver name..." onkeyup="searchVehicles()">
 		    <button class="search-btn"><i class="fa-solid fa-search"></i> Search</button>
+		</div>
+		
+		<div>
+           <button onclick="window.location.href='viewbooking.jsp'">View Bookings</button>
 		</div>
 
 

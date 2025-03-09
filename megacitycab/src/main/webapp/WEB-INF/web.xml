@@ -179,4 +179,17 @@
 <url-pattern>/bookveh</url-pattern>
 </servlet-mapping>
 
+
+<servlet>
+<servlet-name>manageBooking</servlet-name>
+<servlet-class>servlet.manageBooking</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>manageBooking</servlet-name>
+<url-pattern>/mangbook</url-pattern>
+</servlet-mapping>
+
+
+
 </web-app>
