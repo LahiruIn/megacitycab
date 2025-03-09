@@ -168,4 +168,15 @@
 <url-pattern>/cusdisplv</url-pattern>
 </servlet-mapping>
 
+
+<servlet>
+<servlet-name>bookVehicle</servlet-name>
+<servlet-class>servlet.bookVehicle</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>bookVehicle</servlet-name>
+<url-pattern>/bookveh</url-pattern>
+</servlet-mapping>
+
 </web-app>

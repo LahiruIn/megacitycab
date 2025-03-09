@@ -75,7 +75,9 @@
 				            <p><strong>Price:</strong> $${veh.v_price}/day</p>
 				            <p><strong>Driver:</strong> ${veh.d_name}</p>
 				            <p><strong>Driver Contact:</strong> ${veh.d_phone}</p> 
-				            <button class="book-btn">Book Now</button>
+				            <a href="booking_form.jsp?vehicleNumber=${veh.v_number}" class="book-btn">Book Now</a>
+
+
 				        </div>
 				    </div>
 				</c:forEach>
