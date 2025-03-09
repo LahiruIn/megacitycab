@@ -1,0 +1,267 @@
+@charset "UTF-8";
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* ========================== 📌 Global Styles ========================== */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    background-color: #f5f6fa;
+    color: #2c3e50;
+}
+
+/* ========================== 📌 Sidebar ========================== */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: #2c3e50;
+    color: white;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: width 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.sidebar .profile {
+    text-align: center;
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+}
+
+.sidebar .profile i {
+    font-size: 50px;
+    color: #3498db;
+    margin-bottom: 10px;
+}
+
+.sidebar .profile h3 {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.sidebar .profile p {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.sidebar ul li {
+    width: 100%;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    padding: 12px 20px;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.sidebar ul li a i {
+    margin-right: 15px;
+    font-size: 18px;
+}
+
+.sidebar ul li a.active {
+    background: #1a252f;
+    border-left: 4px solid #3498db;
+}
+
+/* ========================== 📌 Main Content ========================== */
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    flex: 1;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 15px 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+}
+
+#toggleMenu {
+    display: none;
+    background: none;
+    border: none;
+    color: #2c3e50;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* ========================== 📌 Booking Management Section ========================== */
+.booking-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.booking-container h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.refresh-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.refresh-btn:hover {
+    background-color: #45a049;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 16px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+table thead {
+    background: #2c3e50;
+    color: white;
+}
+
+table thead tr th {
+    padding: 12px;
+}
+
+table tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+table tbody tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+table tbody tr td {
+    padding: 12px;
+}
+
+/* ========================== 📌 Status Styling ========================== */
+.status-pending {
+    background: #f39c12;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.status-confirmed {
+    background: #28a745;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.status-onride {
+    background: #3498db;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.status-completed {
+    background: #2ecc71;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* ========================== 📌 Status Update Form ========================== */
+.status-update-form {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.status-update-form select {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+.status-update-form button {
+    background: #3498db;
+    color: white;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.status-update-form button:hover {
+    background: #2980b9;
+}
+
+/* ========================== 📌 Error Message ========================== */
+.error-message {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* ========================== 📌 Responsive Design ========================== */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 0;
+        overflow: hidden;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    #toggleMenu {
+        display: block;
+    }
+
+    table th, table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .status-update-form select,
+    .status-update-form button {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+}

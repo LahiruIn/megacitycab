@@ -1,4 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="model.driver"%>
+
+<%
+    HttpSession sessionObj = request.getSession(false);
+
+    // Prevent NullPointerException if session doesn't exist
+    if (sessionObj == null || sessionObj.getAttribute("loggedInDriver") == null) {
+        response.sendRedirect("driverlogin.jsp"); // Redirect to login if session is invalid
+        return;
+    }
+
+    driver loggedInDriver = (driver) sessionObj.getAttribute("loggedInDriver");
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,18 +26,16 @@
 <body>
     <div class="sidebar">
         <div class="profile">
-            <i class="fas fa-user-circle"></i> <!-- Profile Icon -->
-            <h3 id="driverName">Driver Name</h3>
-            <p id="driverRole">Driver</p>
+            <i class="fas fa-user-circle"></i>
+            <h3><%= loggedInDriver.getD_name() %></h3>  <!-- ✅ Display Driver's Name -->
+            <p>Driver</p>
         </div>
         
         <ul>
             <li><a href="driverhome.jsp" class="menu-link"><i class="fas fa-chart-line"></i> Driver Dashboard</a></li>
-            <li><a href="managerides.jsp" class="menu-link"><i class="fas fa-car"></i> Manage Rides</a></li>
-            <li><a href="earnings.jsp" class="menu-link"><i class="fas fa-dollar-sign"></i> Earnings</a></li>
+            <li><a href="driverbooking.jsp" class="menu-link"><i class="fas fa-car"></i> Bookings</a></li>
             <li><a href="profile.jsp" class="menu-link"><i class="fas fa-user"></i> Profile</a></li>
-            <li><a href="settings.jsp" class="menu-link"><i class="fas fa-cog"></i> Settings</a></li>
-            <li><a href="logout.jsp" class="menu-link"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            <li><a href="driverlogout.jsp" class="menu-link"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </div>
 

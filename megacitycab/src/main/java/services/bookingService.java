@@ -77,8 +77,9 @@ public class bookingService {
         return bookingList;
     }
 
+    
 
-    // ✅ Method to Update Booking Status (Admin/Driver)
+    //Update Booking Status (Driver)
     public boolean updateBookingStatus(int bookingId, String newStatus) {
         boolean updated = false;
         String query = "UPDATE bookings SET booking_status = ? WHERE b_id = ?";
@@ -97,8 +98,10 @@ public class bookingService {
         }
         return updated;
     }
+    
+    
 
-    // ✅ Method to Retrieve All Bookings (For Admin)
+    //  Retrieve All Bookings ( Admin)
     public List<booking> getAllBookings() {
         List<booking> bookingList = new ArrayList<>();
         String query = "SELECT * FROM bookings ORDER BY created_at DESC";
@@ -127,4 +130,56 @@ public class bookingService {
         }
         return bookingList;
     }
+    
+    
+    
+    public List<booking> getDriverBookings(String driverEmail) {
+        List<booking> bookings = new ArrayList<>();
+        String query = "SELECT b.* FROM bookings b "
+                     + "JOIN vehical v ON b.v_number = v.v_number "  // Corrected table name
+                     + "JOIN driver d ON v.d_id = d.d_id "
+                     + "WHERE d.d_email = ?";
+
+        try (Connection conn = DBConnect.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, driverEmail);
+            ResultSet rs = stmt.executeQuery();
+
+            System.out.println("🔍 Executing SQL Query for Driver Email: " + driverEmail);
+
+            while (rs.next()) {
+                booking bk = new booking();
+                bk.setB_id(rs.getInt("b_id"));
+                bk.setC_name(rs.getString("c_name"));
+                bk.setC_phone(rs.getInt("c_phone"));
+                bk.setV_number(rs.getString("v_number"));
+                bk.setPickup_location(rs.getString("pickup_location"));
+                bk.setDrop_location(rs.getString("drop_location"));
+                bk.setPickup_date(rs.getTimestamp("pickup_date"));
+                bk.setBooking_status(rs.getString("booking_status"));
+
+                bookings.add(bk);
+            }
+
+            System.out.println("✅ Total Bookings Retrieved: " + bookings.size());
+
+            if (bookings.isEmpty()) {
+                System.out.println("⚠️ No bookings found for this driver.");
+            } else {
+                for (booking b : bookings) {
+                    System.out.println("🟢 Booking ID: " + b.getB_id() + " | Vehicle: " + b.getV_number());
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("❌ Error retrieving bookings: " + e.getMessage());
+        }
+
+        return bookings;
+    }
+           
+
+
 }

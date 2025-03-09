@@ -191,5 +191,27 @@
 </servlet-mapping>
 
 
+<servlet>
+<servlet-name>driverBookings</servlet-name>
+<servlet-class>servlet.driverBookings</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>driverBookings</servlet-name>
+<url-pattern>/drvbook</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+<servlet-name>updateBooking</servlet-name>
+<servlet-class>servlet.updateBooking</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>updateBooking</servlet-name>
+<url-pattern>/updbook</url-pattern>
+</servlet-mapping>
+
+
 
 </web-app>
