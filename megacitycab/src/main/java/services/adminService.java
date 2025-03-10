@@ -1,33 +1,37 @@
 package services;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
-
 import controller.DBConnect;
 import model.admin;
 
 
 public class adminService {
 	
-	public boolean validate(admin adm) {
-		try {
-			
-			String query = "select * from admin where a_email = '"+adm.getA_email()+"' and a_password='"+adm.getA_password()+"'";
-		    
-			Statement statement = DBConnect.getConnection().createStatement();
-			
-			ResultSet rs = statement.executeQuery(query);
-			
-			if(rs.next()) {
-				return true;
-			}
-		
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
-		return false;
-	}
+	public admin validateAdmin(String email, String password) {
+        admin adm = null;
+        
+        try (Connection con = DBConnect.getConnection()) {
+            String query = "SELECT * FROM admin WHERE a_email = ? AND a_password = ?";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, email);
+            pst.setString(2, password);
+            
+            ResultSet rs = pst.executeQuery();
+            
+            if (rs.next()) {
+                adm = new admin();
+                adm.setA_name(rs.getString("a_name"));
+                adm.setA_email(rs.getString("a_email"));
+                adm.setA_password(rs.getString("a_password"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return adm; // Returns null if credentials are incorrect
+    }
+}
 	
 
-}
+

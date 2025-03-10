@@ -20,7 +20,7 @@
             <li><a href="managedrivers.jsp" class="active"><i class="fa-solid fa-user-plus"></i> Manage Drivers</a></li>
             <li><a href="managevehicals.jsp"><i class="fa-solid fa-car"></i> Manage Vehicles</a></li>
             <li><a href="adminviewbooking.jsp" ><i class="fas fa-book"></i> All Bookings</a></li>
-            <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            <li><a href="adminlogin.jsp"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </div>
 

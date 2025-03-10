@@ -57,12 +57,12 @@
     <!-- 🚀 Main Content -->
     <div class="main-content">
         <header>
-            <h2><i class="fas fa-list"></i> My Bookings</h2>
+            <h2><i class="fas fa-list"></i> Manage Bookings</h2>
             <button id="toggleMenu"><i class="fas fa-bars"></i></button>
         </header>
 
         <div class="booking-container">
-            <h3>Assigned Bookings</h3>
+            <h3>My Bookings</h3>
 
             <!-- Refresh Bookings Button -->
             <form action="driverBookings" method="post">
@@ -118,9 +118,7 @@
                         </tbody>
                     </table>
                 </c:when>
-                <c:otherwise>
-                    <p class="error-message"><i class="fas fa-times-circle"></i> No assigned bookings available.</p>
-                </c:otherwise>
+               
             </c:choose>
         </div>
     </div>

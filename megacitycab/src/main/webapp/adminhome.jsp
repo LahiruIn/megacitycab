@@ -1,6 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+
+<%
+    HttpSession sessionObj = request.getSession(false);
+
+    // Redirect to login page if session is invalid or admin is not logged in
+    if (sessionObj == null || sessionObj.getAttribute("loggedInAdmin") == null) {
+        response.sendRedirect("adminlogin.jsp");
+        return;
+    }
+
+    // Retrieve admin details
+    String adminName = (String) sessionObj.getAttribute("loggedInAdmin");
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +34,7 @@
             <li><a href="managedrivers.jsp"><i class="fa-solid fa-user-plus"></i>Manage Drivers</a></li>
             <li><a href="managevehicals.jsp"><i class="fa-solid fa-car"></i> Manage Vehicals</a></li>
             <li><a href="adminviewbooking.jsp"><i class="fas fa-book"></i> All Bookings</a></li>
-            <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            <li><a href="adminlogin.jsp"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </div>
 
@@ -34,22 +48,22 @@
             <div class="card">
                 <i class="fas fa-users"></i>
                 <h3>Total Users</h3>
-                <p><c:out value="${totalUsers}" /></p> <!-- Dynamic User Count -->
+                <p></p>
             </div>
             <div class="card">
                 <i class="fas fa-shopping-cart"></i>
                 <h3>Total Orders</h3>
-                <p>875</p>
+                <p></p>
             </div>
             <div class="card">
                 <i class="fas fa-dollar-sign"></i>
                 <h3>Revenue</h3>
-                <p>$12,540</p>
+                <p></p>
             </div>
             <div class="card">
                 <i class="fas fa-comments"></i>
                 <h3>Feedback</h3>
-                <p>320</p>
+                <p></p>
             </div>
         </div>
     </div>

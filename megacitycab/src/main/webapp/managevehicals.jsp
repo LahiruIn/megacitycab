@@ -98,11 +98,7 @@
 				                </tr>
 				            </c:forEach>
 				        </c:when>
-				        <c:otherwise>
-				            <tr>
-				                <td colspan="9" style="text-align: center; font-weight: bold;">No vehicles found.</td>
-				            </tr>
-				        </c:otherwise>
+				        
 				    </c:choose>
 				</tbody>
 
