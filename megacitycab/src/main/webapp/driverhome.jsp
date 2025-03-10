@@ -34,7 +34,7 @@
         <ul>
             <li><a href="driverhome.jsp" class="menu-link"><i class="fas fa-chart-line"></i> Driver Dashboard</a></li>
             <li><a href="driverbooking.jsp" class="menu-link"><i class="fas fa-car"></i> Bookings</a></li>
-            <li><a href="profile.jsp" class="menu-link"><i class="fas fa-user"></i> Profile</a></li>
+            <li><a href="driverprofile.jsp" class="menu-link"><i class="fas fa-user"></i> Profile</a></li>
             <li><a href="driverlogout.jsp" class="menu-link"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </div>

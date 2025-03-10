@@ -5,6 +5,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%
+    HttpSession sessionObj = request.getSession(false); // Don't create a new session
+
+    if (sessionObj == null || sessionObj.getAttribute("loggedInDriver") == null) {
+        System.out.println("❌ No active session found. Redirecting to login...");
+        response.sendRedirect("driverlogin.jsp");
+        return; // Stop execution
+    }
+
+    driver loggedInDriver = (driver) sessionObj.getAttribute("loggedInDriver");
+
     List<booking> driverBookings = (List<booking>) request.getAttribute("driverBookings");
 
     System.out.println("🔍 JSP Loaded: Checking driverBookings list");
@@ -16,8 +26,6 @@
     } else {
         System.out.println("❌ driverBookings is NULL in JSP.");
     }
-    
-    driver loggedInDriver = (driver) session.getAttribute("loggedInDriver");
 %>
 
 <!DOCTYPE html>
@@ -26,7 +34,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Driver Dashboard</title>
-    <link rel="stylesheet" href="CSS/driverbooking.css">
+    <link rel="stylesheet" href="CSS/driver_booking.css">
     <script defer src="JS/driverhome.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
@@ -41,7 +49,7 @@
         <ul>
             <li><a href="driverhome.jsp"><i class="fas fa-home"></i> Dashboard</a></li>
             <li><a href="manageDriverBookings.jsp" class="active"><i class="fas fa-tasks"></i> Manage Bookings</a></li>
-            <li><a href="profile.jsp"><i class="fas fa-user"></i> Profile</a></li>
+            <li><a href="driverprofile.jsp"><i class="fas fa-user"></i> Profile</a></li>
             <li><a href="driverlogout.jsp"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </div>
@@ -100,6 +108,7 @@
                                                 <option value="Confirmed" <c:if test="${booking.booking_status == 'Confirmed'}">selected</c:if>>Confirmed</option>
                                                 <option value="On Ride" <c:if test="${booking.booking_status == 'On Ride'}">selected</c:if>>On Ride</option>
                                                 <option value="Completed" <c:if test="${booking.booking_status == 'Completed'}">selected</c:if>>Completed</option>
+                                                <option value="Cancelled" <c:if test="${booking.booking_status == 'Cancelled'}">selected</c:if>>Cancelled</option>
                                             </select>
                                             <button type="submit" class="status-btn">Update</button>
                                         </form>

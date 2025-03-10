@@ -132,5 +132,66 @@ public class driverService {
 				e.printStackTrace();
 			}
 		}
+		  
+		
+		// ✅ Update driver details (phone & password)
+		    public boolean updateDriverProfile(String email, String phone, String password) {
+		        boolean isUpdated = false;
+		        String query = "UPDATE driver SET d_phone = ?, d_password = ? WHERE d_email = ?";
+
+		        try (Connection conn = DBConnect.getConnection();
+		             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+		            stmt.setString(1, phone);
+		            stmt.setString(2, password);
+		            stmt.setString(3, email);
+
+		            int rowsUpdated = stmt.executeUpdate();
+		            isUpdated = rowsUpdated > 0;
+
+		            System.out.println(" Updating Driver Profile for: " + email);
+		            System.out.println(" Rows Updated: " + rowsUpdated);
+
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		            System.out.println(" Error updating profile: " + e.getMessage());
+		        }
+		        return isUpdated;
+		    }
+		    
+		    
+		   
+		    
+		 //  Retrieve updated driver details
+		    public driver getDriverByEmail(String email) {
+		        driver d = null;
+		        String query = "SELECT * FROM driver WHERE d_email = ?";
+
+		        try (Connection conn = DBConnect.getConnection();
+		             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+		            stmt.setString(1, email);
+		            var rs = stmt.executeQuery();
+
+		            if (rs.next()) {
+		                d = new driver();
+		                d.setD_id(rs.getInt("d_id"));
+		                d.setD_name(rs.getString("d_name"));
+		                d.setD_email(rs.getString("d_email"));
+		                d.setD_phone(rs.getInt("d_phone"));
+		                d.setD_status(rs.getString("d_status"));
+		                d.setD_password(rs.getString("d_password"));  // Retrieve encrypted password if needed
+		            }
+
+		            System.out.println(" Driver Data Retrieved for: " + email);
+
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		            System.out.println(" Error retrieving driver details: " + e.getMessage());
+		        }
+		        return d;
+		    }
+		
+		    
 		
 	}

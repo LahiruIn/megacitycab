@@ -79,7 +79,7 @@ public class bookingService {
 
     
 
-    //Update Booking Status (Driver)
+  //Update Booking Status (Driver)
     public boolean updateBookingStatus(int bookingId, String newStatus) {
         boolean updated = false;
         String query = "UPDATE bookings SET booking_status = ? WHERE b_id = ?";

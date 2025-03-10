@@ -200,6 +200,14 @@ table tbody tr td {
     border-radius: 5px;
 }
 
+.status-cancelled {
+    background: #e74c3c;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
 /* ========================== 📌 Status Update Form ========================== */
 .status-update-form {
     display: flex;
