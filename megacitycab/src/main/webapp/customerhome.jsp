@@ -1,73 +1,97 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taxi Service</title>
-    <link rel="stylesheet" href="CSS/customer_home.css">
-    <script src="script.js" defer></script>
+    <title>Home - Mega City Cab</title>
+    <link rel="stylesheet" href="CSS/customerhome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script defer src="JS/customer_about.js"></script>
 </head>
 <body>
+    <!-- Navbar -->
     <header>
         <div class="navbar">
-            <a href="index.html" class="logo">Taxi Service</a>
+            <a href="customerhome.jsp" class="logo"><i class="fa-solid fa-taxi"></i> Mega City Cab</a>
             <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="customer_booking.jsp">About</a></li>
+                <ul class="nav-menu">
+                    <li><a href="customerhome.jsp" class="active">Home</a></li>
+                    <li><a href="customer_booking.jsp">Booking</a></li>
+                    <li><a href="customer_about.jsp">About</a></li>
                     <li><a href="services.html">Services</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="logout.jsp">logout</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="logout.html">Logout</a></li>
+                    
                 </ul>
             </nav>
+            
         </div>
     </header>
-    
+
+    <!-- Hero Section -->
     <section class="hero">
+        <img src="image/home1.jpg" class="hero-img" alt="Taxi Service">
         <div class="hero-content">
-            <h1>Need a Ride? Call Us Now!</h1>
-            <p>Fast, reliable, and comfortable rides at your service.</p>
-            <button onclick="bookTaxi()">Book a Taxi</button>
+            <h1>Your Reliable Cab Service</h1>
+            <p>Book a ride with us and enjoy a comfortable and safe journey.
+            Book a ride with us and enjoy a comfortable and safe journey.
+            can you add navigation bar right side coner profile icon.</p>
+            <a href="customer_booking.jsp" class="book-now-button">Book Now</a>
         </div>
     </section>
 
-    <section class="about">
-        <h2>About Us</h2>
-        <p>We are a premier taxi service committed to providing high-quality, timely, and reliable transportation for our customers.</p>
-    </section>
-
-    <section class="services">
-        <h2>Our Services</h2>
-        <div class="service-container">
-            <div class="service-item">City Rides</div>
-            <div class="service-item">Airport Transfers</div>
-            <div class="service-item">Corporate Travel</div>
-        </div>
-    </section>
-
-    <section class="gallery">
-        <h2>Gallery</h2>
-        <div class="image-container">
-            <img src="image/driv.jpg" alt="Taxi Image">
-            <img src="image/homes.jpg" alt="Taxi Image">
-        </div>
-    </section>
-
-    <section class="contact">
-        <h2>Contact Us</h2>
-        <form>
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message" required></textarea>
-            <button type="submit">Send</button>
-        </form>
-    </section>
-
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Taxi Service. All rights reserved.</p>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Jobs</a></li>
+                    <li><a href="#">Brand Assets</a></li>
+                    <li><a href="#">Investor Relations</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Features</h3>
+                <ul>
+                    <li><a href="#">Taxi Booking</a></li>
+                    <li><a href="#">Corporate Travel</a></li>
+                    <li><a href="#">Luxury Rides</a></li>
+                    <li><a href="#">Customer Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Guides</a></li>
+                    <li><a href="#">Research</a></li>
+                    <li><a href="#">Experts</a></li>
+                    <li><a href="#">Agencies</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <div class="footer-social">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <p>Stay updated with our latest news</p>
+                <div class="newsletter">
+                    <input type="email" placeholder="Enter Email" id="newsletter-email">
+                    <button id="newsletter-btn"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 All rights reserved | Mega City Cab</p>
+        </div>
     </footer>
 </body>
 </html>
-    
