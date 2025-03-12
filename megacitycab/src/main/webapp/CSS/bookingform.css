@@ -1,0 +1,144 @@
+@charset "UTF-8";
+
+/* ===================== 🌍 General Styling ===================== */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* ===================== 📌 Booking Container ===================== */
+.booking-container {
+    width: 50%;
+    margin: 80px auto;
+    padding: 35px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+/* ===================== 🚖 Vehicle Details ===================== */
+.booking-details {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.booking-details h3 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-transform: capitalize;
+}
+
+.booking-details p {
+    font-size: 16px;
+    margin: 10px 0;
+    font-weight: 500;
+    color: #555;
+}
+
+/* 🚘 Vehicle Image */
+.booking-image {
+    width: 100%;
+    height: 350px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ===================== 📑 Booking Form ===================== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+    padding-right: 30px;
+}
+
+/* Form Labels */
+label {
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* Input Fields */
+input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border 0.3s ease-in-out, box-shadow 0.3s;
+    background-color: #fff;
+}
+
+/* Input Fields Focus Effect */
+input:focus {
+    border-color: #6a11cb;
+    outline: none;
+    box-shadow: 0px 0px 8px rgba(106, 17, 203, 0.3);
+}
+
+/* Date Picker Styling */
+input[type="datetime-local"] {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+}
+
+/* ===================== 🚨 Error Messages ===================== */
+.error-message {
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* ===================== ✅ Submit Button (Book Now) ===================== */
+.submit-btn {
+    padding: 14px;
+    background-color: yellow; /* Yellow Button */
+    color: black; /* Black Text */
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s;
+    text-align: center;
+    display: block;
+    width: 100%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover & Click Effects */
+.submit-btn:hover {
+    background-color: #ffcc00; /* Slightly Darker Yellow */
+    transform: scale(1.05);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* ===================== 📱 Responsive Fixes for Mobile ===================== */
+@media screen and (max-width: 768px) {
+    .booking-container {
+        width: 90%;
+        padding: 25px;
+    }
+
+    .booking-image {
+        height: 200px;
+    }
+
+    .submit-btn {
+        font-size: 16px;
+    }
+
+    input {
+        font-size: 14px;
+    }
+}

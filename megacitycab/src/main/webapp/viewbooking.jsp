@@ -33,7 +33,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Bookings - Mega City Cab</title>
-    <link rel="stylesheet" href="CSS/viewbooking.css">
+    <link rel="stylesheet" href="CSS/view_booking.css">
     <script defer src="JS/customer_booking.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
@@ -46,9 +46,10 @@
             <nav>
                 <ul class="nav-menu">
                     <li><a href="customerhome.jsp">Home</a></li>
-                    <li><a href="customer_booking.jsp">Booking</a></li>
+                    <li><a href="customer_booking.jsp" class="active">Booking</a></li>
                     <li><a href="customer_about.jsp">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="service.jsp">Services</a></li>
+                    <li><a href="contact.jsp">Contact</a></li>
                     <li><a href="logout.jsp">Logout</a></li>
                 </ul>
             </nav>
@@ -58,12 +59,12 @@
     <!-- Page Banner -->
     <section class="about-banner">
         <h1>My Bookings</h1>
-        <p><a href="customerhome.jsp">Home</a> → View Bookings</p>
+        <p><a href="customer_booking.jsp">Booking</a> → My Bookings</p>
     </section>
 
     <!-- Booking Table Section -->
     <section class="booking-table-container">
-        <h2>My Bookings</h2>
+        
 
         <c:choose>
             <c:when test="${not empty customerBookings}">

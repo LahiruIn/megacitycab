@@ -8,11 +8,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking - Mega City Cab</title>
-    <link rel="stylesheet" href="CSS/customerbooking.css">
+    <link rel="stylesheet" href="CSS/customer_booking.css">
     <script defer src="JS/customer_booking.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
+
     <!-- Navbar -->
     <header>
         <div class="navbar">
@@ -22,8 +23,8 @@
                     <li><a href="customerhome.jsp">Home</a></li>
                     <li><a href="customer_booking.jsp" class="active">Booking</a></li>
                     <li><a href="customer_about.jsp">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="service.jsp">Services</a></li>
+                    <li><a href="contact.jsp">Contact</a></li>
                     <li><a href="logout.jsp">Logout</a></li>
                 </ul>
             </nav>
@@ -47,49 +48,51 @@
     <section class="vehicle-container">
         <h2>Available Vehicles</h2>
 
-       <div class="search-bar">
-		    <input type="text" id="searchInput" placeholder="Search vehicles by model, type, number, or driver name..." onkeyup="searchVehicles()">
-		    <button class="search-btn"><i class="fa-solid fa-search"></i> Search</button>
-		</div>
-		
-		<div>
-           <button onclick="window.location.href='viewbooking.jsp'">View Bookings</button>
-		</div>
+    <!-- Search Bar & View Booking Button Container -->
+<div class="search-container">
+    <!-- Search Bar (Centered) -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search vehicles by model, type, number, or driver name..." onkeyup="searchVehicles()">
+        <button class="search-btn"><i class="fa-solid fa-search"></i> Search</button>
+    </div>
+
+    <!-- View Bookings Button (Right-Aligned) -->
+    <button class="view-booking-btn" onclick="window.location.href='viewbooking.jsp'">View Bookings</button>
+</div>
 
 
+
+        <!-- Vehicle Grid -->
         <div class="vehicle-grid" id="vehicleGrid">
-        
 
-        <c:choose>
-            <c:when test="${not empty vehList}">
-                <c:forEach var="veh" items="${vehList}">
-				    <div class="vehicle-card">
-				        <div class="vehicle-img">
-				            <c:if test="${not empty veh.v_image}">
-				                <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(veh.v_image)}" alt="Vehicle Image">
-				            </c:if>
-				            <c:if test="${empty veh.v_image}">
-				                <img src="images/no-image.jpg" alt="No Image Available">
-				            </c:if>
-				        </div>
-				        <div class="vehicle-details">
-				            <h3>${veh.v_model} - ${veh.v_type}</h3>
-				            <p><strong>Vehicle No:</strong> ${veh.v_number}</p>
-				            <p><strong>Seats:</strong> ${veh.v_seat}</p>
-				            <p><strong>Price:</strong> $${veh.v_price}/day</p>
-				            <p><strong>Driver:</strong> ${veh.d_name}</p>
-				            <p><strong>Driver Contact:</strong> ${veh.d_phone}</p> 
-				            <a href="booking_form.jsp?vehicleNumber=${veh.v_number}" class="book-btn">Book Now</a>
-
-
-				        </div>
-				    </div>
-				</c:forEach>
-            </c:when>
-            <c:otherwise>
-                <p class="no-vehicles">No vehicles available at the moment.</p>
-            </c:otherwise>
-        </c:choose>
+            <c:choose>
+                <c:when test="${not empty vehList}">
+                    <c:forEach var="veh" items="${vehList}">
+                        <div class="vehicle-card">
+                            <div class="vehicle-img">
+                                <c:if test="${not empty veh.v_image}">
+                                    <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(veh.v_image)}" alt="Vehicle Image">
+                                </c:if>
+                                <c:if test="${empty veh.v_image}">
+                                    <img src="images/no-image.jpg" alt="No Image Available">
+                                </c:if>
+                            </div>
+                            <div class="vehicle-details">
+                                <h3>${veh.v_model} - ${veh.v_type}</h3>
+                                <p><strong>Vehicle No:</strong> ${veh.v_number}</p>
+                                <p><strong>Seats:</strong> ${veh.v_seat}</p>
+                                <p><strong>Price:</strong> Rs${veh.v_price}/Per KM</p>
+                                <p><strong>Driver:</strong> ${veh.d_name}</p>
+                                <p><strong>Driver Contact:</strong> ${veh.d_phone}</p> 
+                                <a href="booking_form.jsp?vehicleNumber=${veh.v_number}" class="book-btn">Book Now</a>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </c:when>
+                <c:otherwise>
+                    <p class="no-vehicles">No vehicles available at the moment.</p>
+                </c:otherwise>
+            </c:choose>
 
         </div>
     </section>
@@ -151,33 +154,24 @@
 
     <!-- 🔎 JavaScript for Search Function -->
     <script>
-	    function searchVehicles() {
-	        var input, filter, cards, details, i, txtValue;
-	        input = document.getElementById("searchInput");
-	        filter = input.value.toUpperCase();
-	        cards = document.getElementsByClassName("vehicle-card");
-	
-	        for (i = 0; i < cards.length; i++) {
-	            let vehicleTitle = cards[i].querySelector("h3"); // Vehicle Model & Type
-	            let vehicleNumber = cards[i].querySelector("p:nth-of-type(1)"); // Vehicle No
-	            let driverName = cards[i].querySelector("p:nth-of-type(5)"); // Driver Name
-	
-	            let match = false;
-	
-	            if (vehicleTitle && vehicleTitle.innerText.toUpperCase().indexOf(filter) > -1) {
-	                match = true;
-	            }
-	            if (vehicleNumber && vehicleNumber.innerText.toUpperCase().indexOf(filter) > -1) {
-	                match = true;
-	            }
-	            if (driverName && driverName.innerText.toUpperCase().indexOf(filter) > -1) {
-	                match = true;
-	            }
-	
-	            cards[i].style.display = match ? "" : "none";
-	        }
-	    }
+        function searchVehicles() {
+            var input, filter, cards, details, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            cards = document.getElementsByClassName("vehicle-card");
 
+            for (i = 0; i < cards.length; i++) {
+                let vehicleTitle = cards[i].querySelector("h3");
+                let vehicleNumber = cards[i].querySelector("p:nth-of-type(1)");
+                let driverName = cards[i].querySelector("p:nth-of-type(5)");
+
+                let match = vehicleTitle.innerText.toUpperCase().includes(filter) ||
+                            vehicleNumber.innerText.toUpperCase().includes(filter) ||
+                            driverName.innerText.toUpperCase().includes(filter);
+
+                cards[i].style.display = match ? "" : "none";
+            }
+        }
     </script>
 
 </body>

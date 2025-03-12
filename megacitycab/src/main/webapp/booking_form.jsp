@@ -46,7 +46,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book a Vehicle</title>
-    <link rel="stylesheet" href="CSS/booking_form.css">
+    <link rel="stylesheet" href="CSS/bookingform.css">
 </head>
 <body>
 
@@ -79,6 +79,7 @@
                 <p class="error-message">❌ No vehicles available at the moment.</p>
             </c:otherwise>
         </c:choose>
+        <br>
 
         <!-- 📝 Booking Form -->
         <form action="bookVehicle" method="post">
@@ -104,6 +105,7 @@
 
             <!-- Default Booking Status (Hidden Field) -->
             <input type="hidden" name="bookingStatus" value="Request">
+            <br>
 
             <button type="submit" class="submit-btn">Book Now</button>
         </form>

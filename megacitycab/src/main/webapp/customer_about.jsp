@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Taxi Service</title>
-    <link rel="stylesheet" href="CSS/customer_about.css">
+    <link rel="stylesheet" href="CSS/customerabout.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <script defer src="JS/customer_about.js"></script>
 </head>
@@ -18,9 +18,9 @@
                     <li><a href="customerhome.jsp">Home</a></li>
                     <li><a href="customer_booking.jsp">Booking</a></li>
                     <li><a href="customer_about.jsp" class="active">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="logout.html">Logout</a></li>
+                    <li><a href="service.jsp">Services</a></li>
+                    <li><a href="contact.jsp">Contact</a></li>
+                    <li><a href="logout.jsp">Logout</a></li>
                 </ul>
             </nav>
         </div>
@@ -52,12 +52,12 @@
         <h2>Our Gallery</h2>
         <br>
         <div class="gallery-container">
-            <div class="gallery-item"><img src="image/homes.jpg" alt="Gallery Image 1"></div>
-            <div class="gallery-item"><img src="image/homes.jpg" alt="Gallery Image 2"></div>
-            <div class="gallery-item"><img src="image/homes.jpg" alt="Gallery Image 3"></div>
-            <div class="gallery-item"><img src="image/homes.jpg" alt="Gallery Image 4"></div>
-            <div class="gallery-item"><img src="image/homes.jpg" alt="Gallery Image 5"></div>
-            <div class="gallery-item"><img src="image/homes.jpg" alt="Gallery Image 6"></div>
+            <div class="gallery-item"><img src="image/ga1.webp" alt="Gallery Image 1"></div>
+            <div class="gallery-item"><img src="image/ga2.jpg" alt="Gallery Image 2"></div>
+            <div class="gallery-item"><img src="image/ga3.jpg" alt="Gallery Image 3"></div>
+            <div class="gallery-item"><img src="image/ga7.jpg" alt="Gallery Image 4"></div>
+            <div class="gallery-item"><img src="image/ga5.jpg" alt="Gallery Image 5"></div>
+            <div class="gallery-item"><img src="image/ga6.webp" alt="Gallery Image 6"></div>
         </div>
     </section>
     
