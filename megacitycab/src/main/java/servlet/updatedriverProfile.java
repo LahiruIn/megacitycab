@@ -40,7 +40,7 @@ public class updatedriverProfile extends HttpServlet {
         boolean isUpdated = service.updateDriverProfile(loggedInDriver.getD_email(), newPhone, newPassword);
 
         if (isUpdated) {
-            //  Fetch updated driver details & update session
+            //  Fetch updated driver details & update session  
             driver updatedDriver = service.getDriverByEmail(loggedInDriver.getD_email());
             session.setAttribute("loggedInDriver", updatedDriver);
             

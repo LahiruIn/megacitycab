@@ -33,7 +33,7 @@
         
         <ul>
             <li><a href="driverhome.jsp" class="menu-link"><i class="fas fa-chart-line"></i> Driver Dashboard</a></li>
-            <li><a href="driverbooking.jsp" class="menu-link"><i class="fas fa-car"></i> Bookings</a></li>
+            <li><a href="driverbooking.jsp" class="menu-link"><i class="fas fa-car"></i> Manage Bookings</a></li>
             <li><a href="driverprofile.jsp" class="menu-link"><i class="fas fa-user"></i> Profile</a></li>
             <li><a href="driverlogout.jsp" class="menu-link"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
@@ -49,17 +49,17 @@
             <div class="card">
                 <i class="fas fa-car"></i>
                 <h3>Total Rides</h3>
-                <p>120</p> <!-- Placeholder Value -->
+                <p>---</p> <!-- Placeholder Value -->
             </div>
             <div class="card">
                 <i class="fas fa-road"></i>
                 <h3>Distance Covered</h3>
-                <p>1,450 km</p>
+                <p>--- km</p>
             </div>
             <div class="card">
                 <i class="fas fa-dollar-sign"></i>
                 <h3>Total Earnings</h3>
-                <p>$5,200</p>
+                <p>$---</p>
             </div>
             <div class="card">
                 <i class="fas fa-star"></i>

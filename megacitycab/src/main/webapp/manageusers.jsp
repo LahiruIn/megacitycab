@@ -51,7 +51,6 @@
                         <th>NIC</th>
                         <th>Phone</th>
                         <th>Email</th>
-                        <th>Password</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -67,7 +66,6 @@
 				                    <td>${cus.c_nic}</td>
 				                    <td>${cus.c_phone}</td>
 				                    <td>${cus.c_email}</td>
-				                    <td>${cus.c_password}</td>
 				                    <td>
 				                        <form action="deleteUsers" method="post">
 				                            <input type="hidden" name="email" value="${cus.c_email}">

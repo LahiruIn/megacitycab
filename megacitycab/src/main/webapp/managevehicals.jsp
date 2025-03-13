@@ -29,7 +29,7 @@
 
     <div class="main-content">
         <header>
-            <h2><i class="fas fa-users"></i> Manage Vehicles</h2>
+            <h2><i class="fa-solid fa-car"></i> Manage Vehicles</h2>
             <button id="toggleMenu"><i class="fas fa-bars"></i></button>
         </header>
 
@@ -37,7 +37,7 @@
             <div class="header-row">
                 <h3>Vehicle Management</h3>
                 <button class="add-user-btn" onclick="location.href='addvehical.jsp'">
-                    <i class="fas fa-user-plus"></i> Add Vehicle
+                    <i class="fa-solid fa-car"></i> Add Vehicle
                 </button>
                 <form action="manageVehicals" method="post">
                     <button type="submit" class="add-user-btn">View</button>

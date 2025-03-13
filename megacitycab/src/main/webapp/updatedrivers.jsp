@@ -16,7 +16,7 @@
     <div class="form-container">
         <!-- Left Side (Full Image) -->
         <div class="form-image">
-            <img src="image/driv.jpg" alt="Taxi Driver">
+            <img src="image/drv.jpg" alt="Taxi Driver">
         </div>
 
         <!-- Right Side (Form) -->
